@@ -1,12 +1,12 @@
-class DeeplTranslate(commands.Cog):
-    def __init__(self, bot: Red) -> None:
-        self.bot = bot
-        self.config = Config.get_conf(
-            self,
-            identifier=1,
-            force_registration=True,
-        )
-        self.flag_map = language_codes
+import json
+from pathlib import Path
 
-        #replace this URL with whatever API you're using
-        self.deeplx_url = "http://localhost:1188/translate"
+from redbot.core.bot import Red
+
+from .deepltranslate import DeeplTranslate
+
+with open(Path(__file__).parent / "info.json") as fp:
+    __red_end_user_data_statement__ = json.load(fp)["end_user_data_statement"]
+
+def setup(bot: Red) -> None:
+    bot.add_cog(DeeplTranslate(bot))
