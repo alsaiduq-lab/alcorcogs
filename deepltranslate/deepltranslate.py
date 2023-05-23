@@ -41,8 +41,8 @@ class DeeplTranslate(commands.Cog):
                 async with session.post(self.deeplx_url, data=json.dumps(payload), headers=headers) as resp:
                     if resp.status == 200:
                         data = await resp.json()
-                        if 'message' in data:
-                            await ctx.send(data['message'])
+                        if 'translations' in data:
+                            await ctx.send(data['translations'][0]['text'])
                             if lang_to.lower() in self.flag_map:
                                 await ctx.message.add_reaction(self.flag_map[lang_to.lower()])
                         else:
@@ -74,8 +74,8 @@ class DeeplTranslate(commands.Cog):
                 async with session.post(self.deeplx_url, data=json.dumps(payload), headers=headers) as resp:
                     if resp.status == 200:
                         data = await resp.json()
-                        if 'message' in data:
-                            await message.channel.send(data['message'])
+                        if 'translations' in data:
+                            await message.channel.send(data['translations'][0]['text'])
                         else:
                             await message.channel.send(f"An error occurred: {resp.status}")
                     else:
