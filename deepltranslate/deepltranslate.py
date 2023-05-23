@@ -1,3 +1,4 @@
+import os
 from typing import Literal
 import discord
 from redbot.core import commands
@@ -19,7 +20,7 @@ class DeeplTranslate(commands.Cog):
             force_registration=True,
         )
         self.flag_map = language_codes
-        self.deeplx_url = "http://localhost:1188/translate"
+        self.deeplx_url = os.getenv('DEEPLX_URL')
 
     @commands.command(name='translate', aliases=['tr'])
     async def translate(self, ctx, lang_to, *, args):
