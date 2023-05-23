@@ -19,13 +19,10 @@ class DeeplTranslate(commands.Cog):
             force_registration=True,
         )
         self.flag_map = language_codes
+        self.deeplx_url = "http://localhost:1188/translate"
 
     @commands.command(name='translate', aliases=['tr'])
     async def translate(self, ctx, lang_to, *, args):
-        """
-        Translates text to the specified language.
-        Use ISO language codes.
-        """
         if ctx.message.author.bot or ctx.message.type != discord.MessageType.default:
             return
         args = re.sub(r'http\S+|www.\S+', '', args)
