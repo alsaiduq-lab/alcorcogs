@@ -1,4 +1,5 @@
 import os
+import json
 from typing import Literal
 import discord
 from redbot.core import commands
@@ -36,7 +37,8 @@ class DeeplTranslate(commands.Cog):
                     'source_lang': lang_from.upper(),
                     'target_lang': lang_to.upper()
                 }
-                async with session.post(self.deeplx_url, json=payload) as resp:
+                headers = {'Content-Type': 'application/json'}
+                async with session.post(self.deeplx_url, data=json.dumps(payload), headers=headers) as resp:
                     if resp.status == 200:
                         data = await resp.json()
                         if 'message' in data:
@@ -68,7 +70,8 @@ class DeeplTranslate(commands.Cog):
                     'source_lang': lang_from.upper(),
                     'target_lang': lang_to.upper()
                 }
-                async with session.post(self.deeplx_url, json=payload) as resp:
+                headers = {'Content-Type': 'application/json'}
+                async with session.post(self.deeplx_url, data=json.dumps(payload), headers=headers) as resp:
                     if resp.status == 200:
                         data = await resp.json()
                         if 'message' in data:
