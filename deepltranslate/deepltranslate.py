@@ -6,7 +6,7 @@ from redbot.core.config import Config
 import aiohttp
 from langdetect import detect
 import re
-from lang_codes import language_codes
+from .lang_codes import language_codes
 
 RequestType = Literal["discord_deleted_user", "owner", "user", "user_strict"]
 
