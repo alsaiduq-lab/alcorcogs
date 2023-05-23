@@ -1,4 +1,4 @@
-#if there's another methof of doing this cause I really hate how it has to be hardcoded
+#if there's another method of doing this cause I really hate how it has to be hardcoded
 
 language_codes = {
     'af': 'Afrikaans',
